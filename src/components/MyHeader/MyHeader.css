@@ -1,0 +1,140 @@
+header a {
+  text-decoration: none;
+}
+
+.logo-main {
+  font-family: Georgia;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 35.2px;
+  letter-spacing: 0.06em;
+  text-align: left;
+  color: #f1cdb3;
+}
+
+.logo-sub {
+  font-family: Arial;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 14.95px;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: #fff;
+  margin: 10px 1px 0px 4px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 90px;
+}
+
+.nav {
+  list-style: none;
+  display: flex;
+  column-gap: 35px;
+}
+
+.nav li a {
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: #cdcdcd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav .active {
+  border-bottom: 3px solid #f1cdb3;
+}
+
+.nav .active a {
+  color: #fafafa;
+  cursor: default;
+}
+
+.nav .interactive a:hover {
+  color: #fafafa;
+}
+
+@media screen and (max-width: 1279px) {
+  .header {
+    margin-bottom: 60px;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .burger {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .content {
+    padding: 0 10px;
+  }
+
+  .header {
+    padding: 0 10px;
+  }
+  .start-screen {
+    padding-top: 30px;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    flex-direction: column;
+    align-items: center;
+    background: #292929;
+    height: 100vh;
+    justify-content: center;
+    row-gap: 40px;
+    transition: right 0.3s ease 0s;
+    overflow: auto;
+    z-index: 2;
+  }
+
+  .nav._active{
+    right: 0;
+  }
+
+
+  .nav li a {
+    font-size: 32px;
+    line-height: 51.2px;
+    transition: all 0.3s ease;
+  }
+
+  .nav .interactive a:hover {
+    color: #fafafa;
+    font-size: 33px;
+  }
+
+  .burger {
+    display: flex;
+    flex-direction: column;
+    row-gap: 9px;
+    cursor: pointer;
+    z-index: 2;
+    transition: transform 0.3s ease 0s;
+  }
+
+  .burger._active{
+    transform: rotate(90deg);
+  }
+
+  .burger span {
+    width: 30px;
+    height: 0px;
+    top: 12px;
+    gap: 0px;
+    opacity: 0px;
+    border: 1px solid #f1cdb3;
+  }
+}

@@ -1,0 +1,20 @@
+.sectionStart{
+    background-size: cover;
+    background-image: url(../../assets/img/start-screen-gradient-background.jpg);
+    padding: 0 40px;
+    padding-top: 30px;
+}
+
+@media screen and (max-width: 900px) {
+    .sectionStart {
+      padding: 0px 30px;
+      padding-top: 30px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .sectionStart {
+      padding: 0px 20px;
+      padding-top: 30px;
+    }
+}
