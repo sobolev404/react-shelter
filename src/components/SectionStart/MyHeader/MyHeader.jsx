@@ -1,4 +1,4 @@
-import Burger from '../Burger';
+import Burger from '../../Burger';
 import './MyHeader.css'
 
 export default function MyHeader() {

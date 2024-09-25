@@ -1,5 +1,5 @@
 import "./NotOnly.css";
-import puppyImage from "../../assets/img/start-screen-puppy.png";
+import puppyImage from "../../../assets/img/start-screen-puppy.png";
 
 export default function NotOnly() {
   return (

@@ -1,5 +1,5 @@
-import MyHeader from "../MyHeader/MyHeader"
-import NotOnly from "../NotOnly/NotOnly"
+import MyHeader from "./MyHeader/MyHeader.jsx"
+import NotOnly from "./NotOnly/NotOnly.jsx"
 import './SectionStart.css'
 
 export default function SectionStart(){

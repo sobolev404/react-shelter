@@ -1,0 +1,133 @@
+.wrapper-donation {
+    background-color: #f6f6f6;
+  }
+
+.donation {
+  padding: 80px 0px 100px;
+  display: flex;
+  column-gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.donation-img {
+  max-width: 505px;
+  width: 50%;
+  height: auto;
+}
+.donation-block {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  max-width: 380px;
+}
+
+.donation-block h2 {
+  font-family: Georgia;
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 45.5px;
+  text-align: left;
+  color: #545454;
+  letter-spacing: 0.06em;
+}
+
+.donation-block p {
+  font-family: Georgia;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16.5px;
+  text-align: left;
+  letter-spacing: 0.06em;
+}
+
+.donation-block .credit-card {
+  display: flex;
+  column-gap: 15px;
+  align-items: center;
+  background: #f1cdb3;
+  width: 351px;
+  padding: 10px 15px 10px 15px;
+  border-radius: 9px;
+}
+.donation-block .credit-card a {
+  text-decoration: none;
+  color: #545454;
+}
+.donation-block .credit-card p {
+  font-family: Georgia;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0.06em;
+  text-align: left;
+}
+
+.donation-block .instruction {
+  font-family: Arial;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  color: #b2b2b2;
+  letter-spacing: 0em;
+}
+
+@media screen and (max-width: 900px) {
+  .donation {
+    flex-direction: column-reverse;
+    row-gap: 60px;
+  }
+
+  .donation-img {
+    max-width: 505px;
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .donation {
+    padding: 42px 0px;
+    row-gap: 42px;
+  }
+  .donation-block {
+    align-items: center;
+  }
+  .donation-block h2 {
+    font-family: Georgia;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 32.5px;
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+
+  .donation-block p {
+    text-align: center;
+    line-height: 24px;
+    max-width: 273px;
+    letter-spacing: 0em;
+  }
+
+  .donation-block .credit-card p {
+    font-family: Georgia;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 16.5px;
+    text-align: left;
+  }
+
+  .donation-block .credit-card {
+    width: 281px;
+  }
+
+  .donation-block .instruction {
+    text-align: justify;
+  }
+
+  .donation-img {
+    min-width: 260px;
+    width: 60%;
+  }
+}
