@@ -1,9 +1,17 @@
-export default function Burger({ active, onClick }) {
+import React, { forwardRef } from "react";
+
+const Burger = forwardRef(({ active, onClick }, ref) => {
   return (
-    <div className={!active ? "burger" : "burger _active"} onClick={onClick}>
+    <div
+      ref={ref}
+      className={`burger ${active ? "_active" : ""}`}
+      onClick={onClick}
+    >
       <span></span>
       <span></span>
       <span></span>
     </div>
   );
-}
+});
+
+export default Burger;
