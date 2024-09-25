@@ -1,6 +1,6 @@
-export default function Burger({onClick}) {
+export default function Burger({ active, onClick }) {
   return (
-    <div className="burger" onClick={onClick}>
+    <div className={!active ? "burger" : "burger _active"} onClick={onClick}>
       <span></span>
       <span></span>
       <span></span>
