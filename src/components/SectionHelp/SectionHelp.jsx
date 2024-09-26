@@ -10,9 +10,9 @@ export default function SectionHelp() {
           our shelter
         </h2>
         <ul>
-          {helpData.map((item) => {
+          {helpData.map((item,index) => {
             return (
-              <li className="help-item">
+              <li className="help-item" key={index}>
                 <img src={item.helpImg} alt="food-img" />
                 <p className="help-desc">{item.title}</p>
               </li>
