@@ -1,0 +1,24 @@
+.second-page-header{
+    padding: 30px 40px 60px 40px;
+}
+
+.second-page-header .logo-main{
+    color: #545454;
+}
+
+.second-page-header .logo-sub{
+    color: #292929;
+}
+
+.second-page-header .nav a{
+    color: #545454;
+}
+
+.second-page-header .nav .active a {
+    color: #292929;
+    cursor: default;
+  }
+  
+.second-page-header .nav .interactive a:hover {
+    color: #292929;
+  }

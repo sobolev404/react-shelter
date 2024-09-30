@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Burger from "../../Burger";
 import "./MyHeader.css";
 
@@ -6,26 +7,26 @@ const burgerLinks = [
   {
     className: "active",
     text: "About the shelter",
-    link: "#",
+    link: "/#",
   },
   {
     className: "interactive",
     text: "Our pets",
-    link: "#",
+    link: "/second",
   },
   {
     className: "interactive",
     text: "Help the shelter",
-    link: "#help",
+    link: "/#help",
   },
   {
     className: "interactive",
     text: "Contacts",
-    link: "#contacts",
+    link: "/#contacts",
   },
 ];
 
-export default function MyHeader() {
+export default function MyHeader({ customClass }) {
   const [menuActive, setMenuActive] = useState(false);
 
   const navRef = useRef(null);
@@ -50,13 +51,13 @@ export default function MyHeader() {
   }, []);
 
   return (
-    <header className="header">
-      <a href="#">
+    <header className={`header ${customClass}`}>
+      <Link to="/">
         <div className="logo">
           <p className="logo-main">Cozy House</p>
           <p className="logo-sub">Shelter for pets in Boston</p>
         </div>
-      </a>
+      </Link>
 
       <nav ref={navRef}>
         <Burger
@@ -70,9 +71,9 @@ export default function MyHeader() {
         <ul className={!menuActive ? "nav" : "nav _active"}>
           {burgerLinks.map((link) => (
             <li className={link.className} key={link.text}>
-              <a href={link.link} onClick={closeBurger}>
+              <Link to={link.link} onClick={closeBurger}>
                 {link.text}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
