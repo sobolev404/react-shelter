@@ -16,6 +16,7 @@ import charly from "../../assets/img/pets-charly.png";
 import freddie from "../../assets/img/pets-freddie.png";
 import PetCard from "./PetCard";
 import PetPopup from "./PetPopup";
+import { Link } from "react-router-dom";
 
 export default function SectionFriends() {
   const pets = [
@@ -247,7 +248,7 @@ export default function SectionFriends() {
               ))}
             </Swiper>
           </div>
-          <a href="../pets/pets.html">Get to know the rest</a>
+          <Link to='/second'>Get to know the rest</Link>
         </div>
         {selectedPet && (
           <div className="popup-container" onClick={closePopup}>

@@ -8,6 +8,7 @@ import SectionFooter from "./components/SectionFooter/SectionFooter";
 import SectionFriends from "./components/SectionFriends/SectionFriends";
 import SecondPage from "./components/SecondPage/SecondPage"; // Импортируем вторую страницу
 
+
 function App() {
   return (
     <Router>
@@ -27,7 +28,6 @@ function App() {
             }
           />
           <Route path="/second" element={<SecondPage />} />{" "}
-          {/* Добавляем маршрут для второй страницы */}
         </Routes>
       </div>
     </Router>

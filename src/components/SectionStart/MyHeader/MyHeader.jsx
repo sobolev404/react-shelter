@@ -3,30 +3,9 @@ import { Link } from "react-router-dom";
 import Burger from "../../Burger";
 import "./MyHeader.css";
 
-const burgerLinks = [
-  {
-    className: "active",
-    text: "About the shelter",
-    link: "/#",
-  },
-  {
-    className: "interactive",
-    text: "Our pets",
-    link: "/second",
-  },
-  {
-    className: "interactive",
-    text: "Help the shelter",
-    link: "/#help",
-  },
-  {
-    className: "interactive",
-    text: "Contacts",
-    link: "/#contacts",
-  },
-];
 
-export default function MyHeader({ customClass }) {
+
+export default function MyHeader({ links,customClass }) {
   const [menuActive, setMenuActive] = useState(false);
 
   const navRef = useRef(null);
@@ -50,6 +29,18 @@ export default function MyHeader({ customClass }) {
     };
   }, []);
 
+  const handleLinkClick = (event, link) => {
+    if (link.startsWith("#")) {
+      event.preventDefault();
+      const targetElement = document.getElementById(link.slice(1));
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+      closeBurger();
+  };
+  
+
   return (
     <header className={`header ${customClass}`}>
       <Link to="/">
@@ -65,13 +56,12 @@ export default function MyHeader({ customClass }) {
           onClick={() => {
             setMenuActive(!menuActive);
             document.body.classList.toggle("_lock");
-            console.log(menuActive);
           }}
         ></Burger>
         <ul className={!menuActive ? "nav" : "nav _active"}>
-          {burgerLinks.map((link) => (
+          {links.map((link) => (
             <li className={link.className} key={link.text}>
-              <Link to={link.link} onClick={closeBurger}>
+              <Link to={link.link} onClick={(e) => handleLinkClick(e, link.link)}>
                 {link.text}
               </Link>
             </li>

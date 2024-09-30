@@ -1,5 +1,5 @@
 .second-page-header{
-    padding: 30px 40px 60px 40px;
+    padding: 30px 40px 0 40px;
 }
 
 .second-page-header .logo-main{
@@ -22,3 +22,16 @@
 .second-page-header .nav .interactive a:hover {
     color: #292929;
   }
+
+.second-page-header .burger span{
+    border: 1px solid #000000;
+}  
+
+@media screen and (max-width:767px) {
+    .second-page-header .nav a{
+        color: #cdcdcd;
+    }
+    .second-page-header .nav .active a {
+        color: #fafafa;
+      }
+} 

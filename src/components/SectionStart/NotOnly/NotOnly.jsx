@@ -1,7 +1,9 @@
 import "./NotOnly.css";
 import puppyImage from "../../../assets/img/start-screen-puppy.png";
+import { Link } from "react-router-dom";
 
 export default function NotOnly() {
+  const linkToFriendsSection = '#friends'
   return (
     <div className="notOnly">
       <div className="notOnly-block">
@@ -11,7 +13,18 @@ export default function NotOnly() {
           wide and open heart. He or she will love you more than anybody else in
           the world, you will see!
         </p>
-        <a href="#friends">Make a friend</a>
+        <Link
+          to={linkToFriendsSection}
+          onClick={(event) => {
+            event.preventDefault();
+            const targetElement = document.getElementById(linkToFriendsSection.slice(1));
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+        >
+          Make a friend
+        </Link>
       </div>
 
       <img className="notOnly-img" src={puppyImage} alt="puppy" />
