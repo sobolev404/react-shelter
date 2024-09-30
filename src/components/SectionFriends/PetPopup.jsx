@@ -1,6 +1,6 @@
 export default function PetPopup({ pet, closePopup }) {
   return (
-    <div className="popup-content">
+    <div onClick={(e) => e.stopPropagation()} className="popup-content">
       <button className="popup-btn" onClick={closePopup}>
         &#x2715;
       </button>

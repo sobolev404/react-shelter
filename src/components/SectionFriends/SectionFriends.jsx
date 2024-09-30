@@ -250,7 +250,7 @@ export default function SectionFriends() {
           <a href="../pets/pets.html">Get to know the rest</a>
         </div>
         {selectedPet && (
-          <div className="popup-container" onClick={(e) => e.stopPropagation()}>
+          <div className="popup-container" onClick={closePopup}>
             <PetPopup pet={selectedPet} closePopup={closePopup} />
           </div>
         )}
