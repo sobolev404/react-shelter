@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "./SectionFriends.css";
 
 import jen from "../../assets/img/pets-jennifer.png";
@@ -18,7 +19,7 @@ import PetCard from "./PetCard";
 import PetPopup from "./PetPopup";
 import { Link } from "react-router-dom";
 
-export default function SectionFriends() {
+export default function SectionFriends({ useNavigation, usePagination }) {
   const pets = [
     {
       name: "Jennifer",
@@ -165,7 +166,6 @@ export default function SectionFriends() {
       parasites: ["lice", "fleas"],
     },
   ];
-
   const [finalCards, setFinalCards] = useState([]);
   const [selectedPet, setSelectedPet] = useState(null);
 
@@ -222,10 +222,17 @@ export default function SectionFriends() {
           </h2>
           <div className="slider">
             <Swiper
-              modules={[Navigation]}
+              modules={[Navigation,Pagination]}
               spaceBetween={20}
               slidesPerView={1}
-              navigation
+              navigation={useNavigation}
+              pagination={usePagination &&{
+                clickable: true,
+                dynamicBullets: true,
+                renderBullet: (index, className) => {
+                  return `<span class="${className}">${index + 1}</span>`;
+                },
+              }} 
               loop
             >
               {finalCards.map((group, index) => (
@@ -248,7 +255,7 @@ export default function SectionFriends() {
               ))}
             </Swiper>
           </div>
-          <Link to='/second'>Get to know the rest</Link>
+          {useNavigation && <Link to='/second'>Get to know the rest</Link>}
         </div>
         {selectedPet && (
           <div className="popup-container" onClick={closePopup}>

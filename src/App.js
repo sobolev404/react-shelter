@@ -20,7 +20,7 @@ function App() {
               <>
                 <SectionStart />
                 <SectionAbout />
-                <SectionFriends />
+                <SectionFriends useNavigation={true} usePagination={false}/>
                 <SectionHelp />
                 <SectionDonation />
                 <SectionFooter />

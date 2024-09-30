@@ -30,7 +30,7 @@ export default function SecondPage(){
   return (
     <>
         <MyHeader links={secondPageLinks} customClass={'second-page-header'}></MyHeader>
-        <SectionFriends></SectionFriends>
+        <SectionFriends useNavigation={false} usePagination={true}></SectionFriends>
         <SectionFooter></SectionFooter>
     </>
   );
