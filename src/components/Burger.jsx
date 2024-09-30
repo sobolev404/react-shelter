@@ -1,9 +1,7 @@
-import React, { forwardRef } from "react";
 
-const Burger = forwardRef(({ active, onClick }, ref) => {
+export default function Burger ({ active, onClick }){
   return (
     <div
-      ref={ref}
       className={`burger ${active ? "_active" : ""}`}
       onClick={onClick}
     >
@@ -12,6 +10,5 @@ const Burger = forwardRef(({ active, onClick }, ref) => {
       <span></span>
     </div>
   );
-});
+}
 
-export default Burger;

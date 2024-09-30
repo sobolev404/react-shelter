@@ -28,32 +28,22 @@ const burgerLinks = [
 export default function MyHeader() {
   const [menuActive, setMenuActive] = useState(false);
 
-  // Создаем рефы для бургер-кнопки и меню
-  const burgerRef = useRef(null);
   const navRef = useRef(null);
 
-  const handleLinkClick = () => {
+  const closeBurger = () => {
     setMenuActive(false);
     document.body.classList.remove("_lock");
   };
 
-  // Логика закрытия меню при клике вне его
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        burgerRef.current &&
-        navRef.current &&
-        !burgerRef.current.contains(event.target) &&
-        !navRef.current.contains(event.target)
-      ) {
-        setMenuActive(false);
-        document.body.classList.remove("_lock");
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        closeBurger();
       }
     };
 
     document.addEventListener("click", handleClickOutside);
 
-    // Убираем обработчик при размонтировании компонента
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
@@ -68,26 +58,25 @@ export default function MyHeader() {
         </div>
       </a>
 
-      <nav>
-        <ul ref={navRef} className={!menuActive ? "nav" : "nav _active"}>
+      <nav ref={navRef}>
+        <Burger
+          active={menuActive}
+          onClick={() => {
+            setMenuActive(!menuActive);
+            document.body.classList.toggle("_lock");
+            console.log(menuActive);
+          }}
+        ></Burger>
+        <ul className={!menuActive ? "nav" : "nav _active"}>
           {burgerLinks.map((link) => (
             <li className={link.className} key={link.text}>
-              <a href={link.link} onClick={handleLinkClick}>
+              <a href={link.link} onClick={closeBurger}>
                 {link.text}
               </a>
             </li>
           ))}
         </ul>
       </nav>
-      <Burger
-        ref={burgerRef}
-        active={menuActive}
-        onClick={() => {
-          setMenuActive(!menuActive);
-          document.body.classList.toggle("_lock");
-          console.log(menuActive);
-        }}
-      ></Burger>
     </header>
   );
 }

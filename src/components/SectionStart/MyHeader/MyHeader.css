@@ -117,11 +117,12 @@ header a {
   }
 
   .burger {
+    position: relative;
     display: flex;
     flex-direction: column;
     row-gap: 9px;
     cursor: pointer;
-    z-index: 2;
+    z-index: 3;
     transition: transform 0.3s ease 0s;
   }
 
