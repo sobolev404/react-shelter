@@ -27,6 +27,45 @@
     border: 1px solid #000000;
 }  
 
+
+.pagination .swiper {
+    width: 1200px;
+}
+
+.pagination .swiper-slide{
+    flex-wrap: wrap;
+    column-gap: 40px;
+}
+
+.pagination .friend-item{
+    flex-basis: 0;
+}
+
+@media screen and (max-width:1280px) {
+    .pagination .swiper {
+        width: 1000px;
+    }
+} 
+
+@media screen and (max-width:1000px) {
+    .pagination .swiper {
+        width: 700px;
+    }
+
+} 
+
+@media screen and (max-width:767px) {
+    .pagination .swiper {
+        width: 270px;
+    }
+
+    .pagination .swiper-slide{
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+    }
+}
+
 @media screen and (max-width:767px) {
     .second-page-header .nav a{
         color: #cdcdcd;
