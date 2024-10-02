@@ -8,14 +8,14 @@ const searchPageLinks = [
       link: "/",
     },
     {
-      className: "active",
+      className: "inreractive",
       text: "Our pets",
-      link: "#",
+      link: "/second",
     },
     {
-      className: "interactive",
-      text: "Help the shelter",
-      link: "#help",
+      className: "active",
+      text: "FindYourFriend",
+      link: "#",
     },
     {
       className: "interactive",

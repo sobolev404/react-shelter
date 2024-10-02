@@ -16,8 +16,8 @@ const secondPageLinks = [
   },
   {
     className: "interactive",
-    text: "Help the shelter",
-    link: "#help",
+    text: "FindYourFriend",
+    link: "/search",
   },
   {
     className: "interactive",
