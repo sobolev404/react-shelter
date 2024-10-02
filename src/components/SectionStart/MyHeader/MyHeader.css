@@ -66,6 +66,12 @@ header a {
   }
 }
 
+@media screen and (max-width: 900px) {
+  .nav {
+    column-gap: 20px;
+  }
+}
+
 @media screen and (min-width: 767px) {
   .burger {
     display: none;

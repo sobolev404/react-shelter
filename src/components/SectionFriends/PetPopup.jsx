@@ -1,4 +1,10 @@
+import { useContext } from "react";
+import { AuthContext } from "../AuthContext"
+
+
 export default function PetPopup({ pet, closePopup }) {
+  const {user, addPetToUser} = useContext(AuthContext)
+
   function convertMonthsToAge(months) {
     const years = Math.floor(months / 12);
     const remainingMonths = months % 12;
@@ -35,6 +41,7 @@ export default function PetPopup({ pet, closePopup }) {
             <li><b>Parasites:</b>{pet.parasites.join(", ")}</li>
         </ul>
       </div>
+      {user && <button onClick={()=>addPetToUser(pet)}>Add</button>}
     </div>
   );
 }

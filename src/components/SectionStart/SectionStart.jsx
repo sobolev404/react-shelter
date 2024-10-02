@@ -1,8 +1,14 @@
-import MyHeader from "./MyHeader/MyHeader.jsx"
-import NotOnly from "./NotOnly/NotOnly.jsx"
-import './SectionStart.css'
+import MyHeader from "./MyHeader/MyHeader.jsx";
+import NotOnly from "./NotOnly/NotOnly.jsx";
+import { useContext } from "react";
+import { AuthContext } from "../AuthContext";
+import "./SectionStart.css";
 
-const mainPageLinks = [
+
+
+export default function SectionStart() {
+  const { user } = useContext(AuthContext);
+  const mainPageLinks = [
     {
       className: "active",
       text: "About the shelter",
@@ -23,13 +29,16 @@ const mainPageLinks = [
       text: "Contacts",
       link: "#contacts",
     },
+    {
+      className: "interactive",
+      text: user ? "Profile" : "Login",
+      link: user ? "/profile" : "/login",
+    },
   ];
-
-export default function SectionStart(){
-    return (
-        <div className="sectionStart">
-            <MyHeader links={mainPageLinks}></MyHeader>
-            <NotOnly></NotOnly>
-        </div>
-    )
+  return (
+    <div className="sectionStart">
+      <MyHeader links={mainPageLinks}></MyHeader>
+      <NotOnly></NotOnly>
+    </div>
+  );
 }

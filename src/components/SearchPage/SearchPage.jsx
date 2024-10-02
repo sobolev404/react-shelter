@@ -1,7 +1,13 @@
 import SectionFooter from "../SectionFooter/SectionFooter";
 import SectionSearch from "../SectionSearch/SectionSearch";
 import MyHeader from "../SectionStart/MyHeader/MyHeader";
-const searchPageLinks = [
+import { useContext } from "react";
+import { AuthContext } from "../AuthContext";
+
+export default function SearchPage() {
+  const { user } = useContext(AuthContext);
+
+  const searchPageLinks = [
     {
       className: "interactive",
       text: "About the shelter",
@@ -22,15 +28,20 @@ const searchPageLinks = [
       text: "Contacts",
       link: "#contacts",
     },
+    {
+      className: "interactive",
+      text: user ? "Profile" : "Login",
+      link: user ? "/profile" : "/login",
+    },
   ];
-
-
-export default function SearchPage(){
-    return (
-        <>
-        <MyHeader links={searchPageLinks} customClass={'second-page-header'}></MyHeader>
-        <SectionSearch></SectionSearch>
-        <SectionFooter></SectionFooter>
-        </>
-    )
+  return (
+    <>
+      <MyHeader
+        links={searchPageLinks}
+        customClass={"second-page-header"}
+      ></MyHeader>
+      <SectionSearch></SectionSearch>
+      <SectionFooter></SectionFooter>
+    </>
+  );
 }

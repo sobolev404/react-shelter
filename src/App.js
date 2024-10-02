@@ -9,8 +9,9 @@ import SectionFriends from "./components/SectionFriends/SectionFriends";
 import SecondPage from "./components/SecondPage/SecondPage"; // Импортируем вторую страницу
 import SearchPage from "./components/SearchPage/SearchPage";
 import { AuthProvider } from "./components/AuthContext";
-import LoginPage from "./components/LoginPage/LoginPage";
-import RegisterPage from "./components/RegisterPage/RegisterPage";
+import LoginPage from "./components/AuthPages/LoginPage";
+import RegisterPage from "./components/AuthPages/RegisterPage";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/register" element={<RegisterPage/>} /> 
           <Route path="/second" element={<SecondPage />} />
           <Route path="/search" element={<SearchPage/>} />
+          <Route path="/profile" element={<ProfilePage/>} />
         </Routes>
       </div>
     </Router>

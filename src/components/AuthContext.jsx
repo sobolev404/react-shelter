@@ -1,33 +1,37 @@
-// src/AuthContext.js
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
-// Создаем контекст
 export const AuthContext = createContext();
 
-// Создаем провайдер
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    // Извлекаем пользователя из localStorage при монтировании
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser)); // Устанавливаем пользователя в состояние
-    }
-  }, []);
-
   const login = (userData) => {
     setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData)); // Сохраняем пользователя в localStorage
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("user"); // Удаляем пользователя из localStorage
+  };
+
+  const addPetToUser = (pet) => {
+    if (user) {
+      setUser((prevUser) => ({
+        ...prevUser,
+        userPets: [...prevUser.userPets, pet],
+      }));
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const updatedUsers = users.map((u) =>
+        u.username === user.username
+          ? { ...u, userPets: [...u.userPets, pet] }
+          : u
+      );
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, addPetToUser }}>
       {children}
     </AuthContext.Provider>
   );
