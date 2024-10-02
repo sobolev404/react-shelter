@@ -2,11 +2,15 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Burger from "../../Burger";
 import "./MyHeader.css";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthContext";
 
 
 
 export default function MyHeader({ links,customClass }) {
   const [menuActive, setMenuActive] = useState(false);
+
+  const {user} = useContext(AuthContext)
 
   const navRef = useRef(null);
 
@@ -49,7 +53,11 @@ export default function MyHeader({ links,customClass }) {
           <p className="logo-sub">Shelter for pets in Boston</p>
         </div>
       </Link>
-
+      {user ? ( // Проверяем, авторизован ли пользователь
+        <p>Привет, {user.username}!</p> // Отображаем имя пользователя
+      ) : (
+        <p>Гость</p> // Отображаем текст для неавторизованных пользователей
+      )}
       <nav ref={navRef}>
         <Burger
           active={menuActive}

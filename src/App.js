@@ -8,11 +8,15 @@ import SectionFooter from "./components/SectionFooter/SectionFooter";
 import SectionFriends from "./components/SectionFriends/SectionFriends";
 import SecondPage from "./components/SecondPage/SecondPage"; // Импортируем вторую страницу
 import SearchPage from "./components/SearchPage/SearchPage";
+import { AuthProvider } from "./components/AuthContext";
+import LoginPage from "./components/LoginPage/LoginPage";
+import RegisterPage from "./components/RegisterPage/RegisterPage";
 
 
 function App() {
   return (
-    <Router>
+    <AuthProvider>
+      <Router>
       <div className="App">
         <Routes>
           <Route
@@ -28,11 +32,15 @@ function App() {
               </>
             }
           />
-          <Route path="/second" element={<SecondPage />} />{" "}
-          <Route path="/search" element={<SearchPage/>} />{" "}
+          <Route path="/login" element={<LoginPage/>} /> 
+          <Route path="/register" element={<RegisterPage/>} /> 
+          <Route path="/second" element={<SecondPage />} />
+          <Route path="/search" element={<SearchPage/>} />
         </Routes>
       </div>
     </Router>
+    </AuthProvider>
+    
   );
 }
 
