@@ -7,6 +7,7 @@ import SectionDonation from "./components/SectionDonation/SectionDonation";
 import SectionFooter from "./components/SectionFooter/SectionFooter";
 import SectionFriends from "./components/SectionFriends/SectionFriends";
 import SecondPage from "./components/SecondPage/SecondPage"; // Импортируем вторую страницу
+import SearchPage from "./components/SearchPage/SearchPage";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             }
           />
           <Route path="/second" element={<SecondPage />} />{" "}
+          <Route path="/search" element={<SearchPage/>} />{" "}
         </Routes>
       </div>
     </Router>
