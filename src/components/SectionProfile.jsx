@@ -32,8 +32,7 @@ export default function SectionProfile() {
 
   return (
     <>
-      <h2>Username: {user.username}</h2>
-      <h2>Your wish list:</h2>
+      <h2>Your wishlist:</h2>
       <div className="user-pets">
         {user.userPets.length!==0 ? user.userPets.map((pet, idx) => (
           <PetCard

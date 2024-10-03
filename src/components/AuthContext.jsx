@@ -55,8 +55,25 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
+  const updateUser = (newUsername, newPassword) => {
+    setUser((prevUser) => ({
+      ...prevUser,
+      username: newUsername,
+      ...(newPassword && { password: newPassword }), // Обновляем пароль, если он не пустой
+    }));
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const updatedUsers = users.map((u) =>
+      u.username === user.username
+        ? { ...u, username: newUsername, ...(newPassword && { password: newPassword }) }
+        : u
+    );
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, addPetToUser,removePetFromUser }}>
+    <AuthContext.Provider value={{ user, login, logout, addPetToUser,removePetFromUser, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

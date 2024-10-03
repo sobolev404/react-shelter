@@ -1,3 +1,4 @@
+import EditUser from "../EditUser/EditUser";
 import SectionFooter from "../SectionFooter/SectionFooter";
 import SectionProfile from "../SectionProfile";
 import MyHeader from "../SectionStart/MyHeader/MyHeader";
@@ -37,6 +38,7 @@ export default function ProfilePage() {
         links={searchPageLinks}
         customClass={"second-page-header"}
       ></MyHeader>
+      <EditUser></EditUser>
       <SectionProfile></SectionProfile>
       <SectionFooter></SectionFooter>
     </>
