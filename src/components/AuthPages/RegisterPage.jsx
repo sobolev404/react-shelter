@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../AuthContext";
-import { useNavigate } from "react-router-dom"; // Импортируем useNavigate
+import { useNavigate, Link } from "react-router-dom"; // Импортируем useNavigate
 import styles from "./AuthPages.module.css";
 
 const RegisterPage = () => {
@@ -58,6 +58,7 @@ const RegisterPage = () => {
           <button className={styles.button} type="submit">
             Register
           </button>
+          <Link className={styles.link} to='/login'>Already have an account? Login!</Link>
         </form>
       </div>
     </div>
