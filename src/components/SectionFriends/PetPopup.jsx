@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 export default function PetPopup({ pet, closePopup }) {
   const location = useLocation();
 
-  const { user, addPetToUser } = useContext(AuthContext);
+  const { user, addPetToUser, removePetFromUser } = useContext(AuthContext);
 
 
   function convertMonthsToAge(months) {
@@ -71,7 +71,7 @@ export default function PetPopup({ pet, closePopup }) {
         <button
           className="popup-btn-add popup-btn-delete"
           onClick={() => {
-            addPetToUser(pet);
+            removePetFromUser(pet);
             closePopup();
             alert(`${pet.name} was removed from your wishlist`);
           }}

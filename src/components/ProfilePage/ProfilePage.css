@@ -1,0 +1,14 @@
+.user-pets{
+    max-width: 1280px;
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 20px;
+    column-gap: 20px;
+    margin: 0 auto;
+}
+
+.user-pets .friend-item{
+    flex-basis: 0%;
+}

@@ -1,6 +1,7 @@
 import SectionFooter from "../SectionFooter/SectionFooter";
 import SectionProfile from "../SectionProfile";
 import MyHeader from "../SectionStart/MyHeader/MyHeader";
+import './ProfilePage.css'
 
 export default function ProfilePage() {
     const searchPageLinks = [
@@ -17,7 +18,7 @@ export default function ProfilePage() {
         {
           className: "interactive",
           text: "FindYourFriend",
-          link: "#",
+          link: "/search",
         },
         {
           className: "interactive",

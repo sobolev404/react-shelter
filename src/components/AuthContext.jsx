@@ -30,8 +30,33 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const removePetFromUser = (pet) => {
+    if (user) {
+      setUser((prevUser) => {
+        const updatedUserPets = prevUser.userPets.filter(
+          (_, index) => index !== prevUser.userPets.indexOf(pet)
+        );
+  
+        // Обновляем состояние пользователя
+        const updatedUser = { ...prevUser, userPets: updatedUserPets };
+  
+        // Сразу обновляем localStorage с новым состоянием
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const updatedUsers = users.map((u) =>
+          u.username === user.username
+            ? { ...u, userPets: updatedUserPets }
+            : u
+        );
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
+  
+        // Возвращаем новое состояние для setUser
+        return updatedUser;
+      });
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, addPetToUser }}>
+    <AuthContext.Provider value={{ user, login, logout, addPetToUser,removePetFromUser }}>
       {children}
     </AuthContext.Provider>
   );
