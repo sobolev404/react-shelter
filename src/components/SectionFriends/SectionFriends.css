@@ -184,6 +184,13 @@
   display: flex;
   border-radius: 10px;
   position: relative;
+  flex-direction: column;
+  row-gap: 10px;
+  align-items: center;
+}
+
+.popup-top{
+  display: flex;
 }
 
 .popup-btn {
@@ -271,6 +278,28 @@
   border-radius: 10px;
 }
 
+
+
+.popup-btn-add {
+  padding: 12px;
+  width: 50%;
+  background-color: #f1cdb3;
+  color: #5a3c2a;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.popup-btn-add:hover {
+  background-color: #dab18f;
+}
+
+.popup-btn-delete{
+  background-color: rgb(255, 48, 48);
+}
 
 @media screen and (max-width: 1279px) {
   .swiper {
