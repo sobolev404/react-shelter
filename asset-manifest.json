@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/react-shelter/static/css/main.8480429d.css",
+    "main.js": "/react-shelter/static/js/main.fbe5a2ef.js",
+    "static/js/453.0f8e8842.chunk.js": "/react-shelter/static/js/453.0f8e8842.chunk.js",
+    "static/media/start-screen-puppy.png": "/react-shelter/static/media/start-screen-puppy.021d028beb78c4d75556.png",
+    "static/media/start-screen-gradient-background.jpg": "/react-shelter/static/media/start-screen-gradient-background.44c42ceef4fa77eede76.jpg",
+    "static/media/footer-background.png": "/react-shelter/static/media/footer-background.5037ee59571d60cccb46.png",
+    "static/media/about-pets.png": "/react-shelter/static/media/about-pets.3850ca5af2308921a653.png",
+    "static/media/donation-dog.png": "/react-shelter/static/media/donation-dog.a70b4cf9ca0eec6145a9.png",
+    "static/media/footer-puppy.png": "/react-shelter/static/media/footer-puppy.ca337f76a3ecfb289fc7.png",
+    "static/media/pets-charly.png": "/react-shelter/static/media/pets-charly.4adc29b45d73af8a5eae.png",
+    "static/media/pets-sophia.png": "/react-shelter/static/media/pets-sophia.ecedd5d736349a87f570.png",
+    "static/media/pets-woody.png": "/react-shelter/static/media/pets-woody.3a1d03480647f54f4a53.png",
+    "static/media/pets-timmy.png": "/react-shelter/static/media/pets-timmy.11f3522dcecba7cd37a5.png",
+    "static/media/pets-jennifer.png": "/react-shelter/static/media/pets-jennifer.3364ec241999219237a3.png",
+    "static/media/pets-freddie.png": "/react-shelter/static/media/pets-freddie.5269502cabbe9cef1fd8.png",
+    "static/media/pets-katrine.png": "/react-shelter/static/media/pets-katrine.c3ca2a7750d96d8951e9.png",
+    "static/media/pets-scarlet.png": "/react-shelter/static/media/pets-scarlet.ff0f2793f5d298f12e95.png",
+    "static/media/icon-phone.svg": "/react-shelter/static/media/icon-phone.b79d1c5ce3c4f2ded1ee78e45ea54f28.svg",
+    "static/media/icon-pet-food.svg": "/react-shelter/static/media/icon-pet-food.7a36c1bd7a3f8107ffeaa089d6b41a13.svg",
+    "static/media/icon-email.svg": "/react-shelter/static/media/icon-email.3f2265dabc9181e28b9947ef73e6ef5a.svg",
+    "static/media/credit-card.svg": "/react-shelter/static/media/credit-card.b0a55b5f9acb325550a024c941c60044.svg",
+    "index.html": "/react-shelter/index.html",
+    "main.8480429d.css.map": "/react-shelter/static/css/main.8480429d.css.map",
+    "main.fbe5a2ef.js.map": "/react-shelter/static/js/main.fbe5a2ef.js.map",
+    "453.0f8e8842.chunk.js.map": "/react-shelter/static/js/453.0f8e8842.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8480429d.css",
+    "static/js/main.fbe5a2ef.js"
+  ]
+}
