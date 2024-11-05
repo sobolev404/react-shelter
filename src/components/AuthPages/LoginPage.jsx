@@ -5,28 +5,36 @@ import styles from "./AuthPages.module.css";
 
 const LoginPage = () => {
   const { login } = useContext(AuthContext);
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate(); // Инициализируем хук useNavigate
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Получаем массив пользователей из localStorage
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    fetch("http://localhost:4444/auth/login", {
+      method: "POST", // Указываем метод запроса
+      headers: {
+        "Content-Type": "application/json", // Задаем тип содержимого, например, JSON
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ошибка сети");
+        }
+        return response.json(); // Преобразуем ответ в JSON
+      })
+      .then((data) => {
+        console.log("Ответ:", data); // Обрабатываем полученные данные
+      })
+      .catch((error) => {
+        console.error("Произошла ошибка:", error); // Обрабатываем ошибки
+      });
 
-    // Ищем пользователя с соответствующим именем и паролем
-    const storedUser = users.find(
-      (user) => user.username === username && user.password === password
-    );
-
-    if (storedUser) {
-      // Входим в систему
-      login(storedUser);
-      navigate("/");
-    } else {
-      alert("Неправильное имя пользователя или пароль");
-    }
   };
 
   return (
@@ -36,9 +44,9 @@ const LoginPage = () => {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             className={styles.input}
           />

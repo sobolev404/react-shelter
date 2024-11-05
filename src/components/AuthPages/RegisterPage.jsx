@@ -4,34 +4,42 @@ import { useNavigate, Link } from "react-router-dom"; // Импортируем 
 import styles from "./AuthPages.module.css";
 
 const RegisterPage = () => {
-  const [username, setUsername] = useState("");
+  const [fullName, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email,setEmail] = useState("");
+  const [avatarUrl,setAvatarUrl] = useState("")
+ 
   const { login } = useContext(AuthContext);
   const navigate = useNavigate(); // Инициализируем хук useNavigate
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Получаем текущий массив пользователей из localStorage
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    fetch("http://localhost:4444/auth/register", {
+      method: "POST", // Указываем метод запроса
+      headers: {
+        "Content-Type": "application/json", // Задаем тип содержимого, например, JSON
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        avatarUrl,
+        fullName,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ошибка сети");
+        }
+        return response.json(); // Преобразуем ответ в JSON
+      })
+      .then((data) => {
+        console.log("Ответ:", data); // Обрабатываем полученные данные
+      })
+      .catch((error) => {
+        console.error("Произошла ошибка:", error); // Обрабатываем ошибки
+      });
 
-    // Проверяем, существует ли пользователь с таким же именем пользователя
-    const userExists = users.some((user) => user.username === username);
-
-    if (userExists) {
-      alert("Пользователь с таким именем уже существует!");
-    } else {
-      // Добавляем нового пользователя в массив
-      const newUser = { username, password, userPets:[] };
-      users.push(newUser);
-
-      // Сохраняем обновленный массив обратно в localStorage
-      localStorage.setItem("users", JSON.stringify(users));
-
-      // Автоматически логиним нового пользователя
-      login(newUser);
-      navigate("/");
-    }
   };
 
   return (
@@ -43,8 +51,24 @@ const RegisterPage = () => {
             className={styles.input}
             type="text"
             placeholder="Username"
-            value={username}
+            value={fullName}
             onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="AvatarURL"
+            value={avatarUrl}
+            onChange={(e) => setAvatarUrl(e.target.value)}
             required
           />
           <input
