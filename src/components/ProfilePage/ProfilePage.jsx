@@ -39,7 +39,7 @@ export default function ProfilePage() {
         customClass={"second-page-header"}
       ></MyHeader>
       <EditUser></EditUser>
-      <SectionProfile></SectionProfile>
+      {/* <SectionProfile></SectionProfile> */}
       <SectionFooter></SectionFooter>
     </>
   );

@@ -4,42 +4,21 @@ import { useNavigate, Link } from "react-router-dom"; // Импортируем 
 import styles from "./AuthPages.module.css";
 
 const RegisterPage = () => {
-  const [fullName, setUsername] = useState("");
+  const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const [email,setEmail] = useState("");
   const [avatarUrl,setAvatarUrl] = useState("")
- 
-  const { login } = useContext(AuthContext);
-  const navigate = useNavigate(); // Инициализируем хук useNavigate
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const { register } = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    fetch("http://localhost:4444/auth/register", {
-      method: "POST", // Указываем метод запроса
-      headers: {
-        "Content-Type": "application/json", // Задаем тип содержимого, например, JSON
-      },
-      body: JSON.stringify({
-        email,
-        password,
-        avatarUrl,
-        fullName,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Ошибка сети");
-        }
-        return response.json(); // Преобразуем ответ в JSON
-      })
-      .then((data) => {
-        console.log("Ответ:", data); // Обрабатываем полученные данные
-      })
-      .catch((error) => {
-        console.error("Произошла ошибка:", error); // Обрабатываем ошибки
-      });
-
+    try {
+      await register(email, password, fullName, avatarUrl);
+    } catch (error) {
+      console.error("Ошибка регистрации:", error); // можно добавить обработку ошибки
+    }
   };
 
   return (
@@ -52,7 +31,7 @@ const RegisterPage = () => {
             type="text"
             placeholder="Username"
             value={fullName}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setFullName(e.target.value)}
             required
           />
           <input

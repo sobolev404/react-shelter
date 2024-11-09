@@ -16,33 +16,32 @@ import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-      <div className="App">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <SectionStart />
-                <SectionAbout />
-                <SectionFriends useNavigation={true} usePagination={false} customClass={''}/>
-                <SectionHelp />
-                <SectionDonation />
-                <SectionFooter />
-              </>
-            }
-          />
-          <Route path="/login" element={<LoginPage/>} /> 
-          <Route path="/register" element={<RegisterPage/>} /> 
-          <Route path="/second" element={<SecondPage />} />
-          <Route path="/search" element={<SearchPage/>} />
-          <Route path="/profile" element={<ProfilePage/>} />
-        </Routes>
-      </div>
+    <Router>
+      <AuthProvider>
+        <div className="App">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <SectionStart />
+                  <SectionAbout />
+                  <SectionFriends useNavigation={true} usePagination={false} customClass={''}/>
+                  <SectionHelp />
+                  <SectionDonation />
+                  <SectionFooter />
+                </>
+              }
+            />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/second" element={<SecondPage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+          </Routes>
+        </div>
+      </AuthProvider>
     </Router>
-    </AuthProvider>
-    
   );
 }
 

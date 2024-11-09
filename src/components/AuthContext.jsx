@@ -1,79 +1,104 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
-  const login = (userData) => {
-    setUser(userData);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [loading, setLoading] = useState(true); // Добавляем состояние загрузки
+
+  useEffect(() => {
+    if (token) {
+      fetchUserData();
+    } else {
+      setLoading(false); // Устанавливаем загрузку в false, если токен отсутствует
+    }
+  }, [token]);
+
+  const fetchUserData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:4444/auth/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Не удалось получить данные пользователя");
+      }
+
+      const userData = await response.json();
+      setUser(userData);
+    } catch (error) {
+      console.error("Ошибка при загрузке данных пользователя:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const login = async (email, password) => {
+    try {
+      const response = await fetch("http://localhost:4444/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Ошибка входа");
+      }
+
+      setUser(data); // сохраняем данные пользователя и токен
+      localStorage.setItem("token", data.token); // сохраняем токен в localStorage
+      navigate("/"); // перенаправление на главную страницу
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const register = async (email, password, fullName, avatarUrl) => {
+    try {
+      const response = await fetch("http://localhost:4444/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, fullName, avatarUrl }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Ошибка регистрации");
+      }
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Ошибка входа");
+      }
+
+      setUser(data); // сохраняем данные пользователя и токен
+      localStorage.setItem("token", data.token); // сохраняем токен в localStorage
+      navigate("/"); // перенаправление на главную страницу
+    } catch (error) {
+      console.error("Ошибка при регистрации:", error);
+      throw error;
+    }
   };
 
   const logout = () => {
     setUser(null);
-  };
-
-  const addPetToUser = (pet) => {
-    if (user) {
-      setUser((prevUser) => ({
-        ...prevUser,
-        userPets: [...prevUser.userPets, pet],
-      }));
-
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const updatedUsers = users.map((u) =>
-        u.username === user.username
-          ? { ...u, userPets: [...u.userPets, pet] }
-          : u
-      );
-      localStorage.setItem("users", JSON.stringify(updatedUsers));
-    }
-  };
-
-  const removePetFromUser = (pet) => {
-    if (user) {
-      setUser((prevUser) => {
-        const updatedUserPets = prevUser.userPets.filter(
-          (_, index) => index !== prevUser.userPets.indexOf(pet)
-        );
-  
-        // Обновляем состояние пользователя
-        const updatedUser = { ...prevUser, userPets: updatedUserPets };
-  
-        // Сразу обновляем localStorage с новым состоянием
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-        const updatedUsers = users.map((u) =>
-          u.username === user.username
-            ? { ...u, userPets: updatedUserPets }
-            : u
-        );
-        localStorage.setItem("users", JSON.stringify(updatedUsers));
-  
-        // Возвращаем новое состояние для setUser
-        return updatedUser;
-      });
-    }
-  };
-
-
-  const updateUser = (newUsername, newPassword) => {
-    setUser((prevUser) => ({
-      ...prevUser,
-      username: newUsername,
-      ...(newPassword && { password: newPassword }), // Обновляем пароль, если он не пустой
-    }));
-
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const updatedUsers = users.map((u) =>
-      u.username === user.username
-        ? { ...u, username: newUsername, ...(newPassword && { password: newPassword }) }
-        : u
-    );
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, addPetToUser,removePetFromUser, updateUser }}>
+    <AuthContext.Provider value={{ user, token, login,register, logout, fetchUserData, loading }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,40 +1,16 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../AuthContext";
-import { useNavigate, Link } from "react-router-dom"; // Импортируем useNavigate
 import styles from "./AuthPages.module.css";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Инициализируем хук useNavigate
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    fetch("http://localhost:4444/auth/login", {
-      method: "POST", // Указываем метод запроса
-      headers: {
-        "Content-Type": "application/json", // Задаем тип содержимого, например, JSON
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Ошибка сети");
-        }
-        return response.json(); // Преобразуем ответ в JSON
-      })
-      .then((data) => {
-        console.log("Ответ:", data); // Обрабатываем полученные данные
-      })
-      .catch((error) => {
-        console.error("Произошла ошибка:", error); // Обрабатываем ошибки
-      });
-
+    login(email, password); // вызываем функцию логина из контекста
   };
 
   return (
