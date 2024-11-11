@@ -1,22 +1,54 @@
 import { useEffect, useRef, useState } from "react";
 import PetCard from "../SectionFriends/PetCard.jsx";
-import { pets } from "../SectionFriends/SectionFriends.jsx";
 import "./SectionSearch.css";
 import PetPopup from "../SectionFriends/PetPopup.jsx";
+import useFetching from "../../hooks/useFetching.js";
 
-const sortOptions = ['name','type','breed','age']
+const sortOptions = ["name", "type", "breed", "age"];
 
 export default function SectionSearch() {
+  const [petsApi, setPetsApi] = useState([]);
+
+  const [fetchPets, isPetsLoading, petsError] = useFetching(async () => {
+    const response = await fetch(`http://localhost:4444/pets`);
+    const data = await response.json();
+    console.log(data);
+    setPetsApi(data);
+  });
+
+  useEffect(() => {
+    fetchPets();
+  }, []);
+
+  useEffect(() => {
+    if (petsApi.length > 0) {
+      setCardArray(
+        petsApi.map((pet, idx) => (
+          <PetCard
+            onClick={() => {
+              openPopup(pet);
+            }}
+            pet={pet}
+            key={idx}
+            imgUrl={pet.img}
+            imgAlt={pet.name}
+            petName={pet.name}
+          ></PetCard>
+        ))
+      );
+    }
+  }, [petsApi]);
+
   const [selectedPet, setSelectedPet] = useState(null);
 
   const [inputName, setInputName] = useState("");
-  const [inputBreed,setInputBreed] = useState('')
+  const [inputBreed, setInputBreed] = useState("");
 
   const [cardArray, setCardArray] = useState([]);
   const [sortOption, setSortOption] = useState("");
 
   const inputNameRef = useRef(null);
-  const inputBreedRef = useRef(null)
+  const inputBreedRef = useRef(null);
   function openPopup(pet) {
     document.body.classList.toggle("stop-scroll");
     setSelectedPet(pet);
@@ -28,18 +60,20 @@ export default function SectionSearch() {
   }
 
   useEffect(() => {
-    setCardArray(searchByName(inputName, pets, 'name'));
+    setCardArray(searchByName(inputName, petsApi, "name"));
     console.log("render");
   }, [inputName]);
 
   useEffect(() => {
-    setCardArray(searchByName(inputBreed, pets, 'breed'));
+    setCardArray(searchByName(inputBreed, petsApi, "breed"));
     console.log("render");
   }, [inputBreed]);
 
   function searchByName(query, arr, searchCategory) {
     return arr
-      .filter((item) => item[searchCategory].toLowerCase().includes(query.toLowerCase()))
+      .filter((item) =>
+        item[searchCategory].toLowerCase().includes(query.toLowerCase())
+      )
       .map((pet, idx) => (
         <PetCard
           onClick={() => {
@@ -61,25 +95,27 @@ export default function SectionSearch() {
       }
       return a[opt] - b[opt];
     });
-    setCardArray(sortedArray.map((pet, idx) => (
-      <PetCard
-        onClick={() => {
-          openPopup(pet);
-        }}
-        pet={pet}
-        key={idx}
-        imgUrl={pet.img}
-        imgAlt={pet.name}
-        petName={pet.name}
-      ></PetCard>
-    )));
+    setCardArray(
+      sortedArray.map((pet, idx) => (
+        <PetCard
+          onClick={() => {
+            openPopup(pet);
+          }}
+          pet={pet}
+          key={idx}
+          imgUrl={pet.img}
+          imgAlt={pet.name}
+          petName={pet.name}
+        ></PetCard>
+      ))
+    );
     console.log("sorted");
   }
 
   function handleSortOption(event) {
     const selectedOption = event.target.value;
     setSortOption(selectedOption);
-    sortArr(selectedOption, pets); // Используем новое значение напрямую
+    sortArr(selectedOption, petsApi); // Используем новое значение напрямую
   }
 
   return (
@@ -116,11 +152,7 @@ export default function SectionSearch() {
         </div>
       </div>
       <div className="section-search-pets">
-        {cardArray.length > 0 ? (
-          cardArray
-        ) : (
-          <p>Животное с таким именем не найдено</p>
-        )}
+        {!isPetsLoading ? cardArray : <p>Загрузка</p>}
       </div>
       {selectedPet && (
         <div className="popup-container" onClick={closePopup}>

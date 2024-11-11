@@ -66,6 +66,11 @@
   padding-bottom: 30px;
 }
 
+.friend-img{
+  width: 270px;
+  height: 270px;
+}
+
 .friend-item.active {
   display: flex;
 }
