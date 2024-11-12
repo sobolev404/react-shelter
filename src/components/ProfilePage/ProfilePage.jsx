@@ -1,3 +1,4 @@
+import AddNewPet from "../AddNewPet/AddNewPet";
 import EditUser from "../EditUser/EditUser";
 import SectionFooter from "../SectionFooter/SectionFooter";
 import SectionProfile from "../SectionProfile";
@@ -39,6 +40,7 @@ export default function ProfilePage() {
         customClass={"second-page-header"}
       ></MyHeader>
       <EditUser></EditUser>
+      <AddNewPet></AddNewPet>
       {/* <SectionProfile></SectionProfile> */}
       <SectionFooter></SectionFooter>
     </>
