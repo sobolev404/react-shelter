@@ -12,3 +12,6 @@
 .user-pets .friend-item{
     flex-basis: 0%;
 }
+.main{
+    background-color: #f6f6f6;
+}

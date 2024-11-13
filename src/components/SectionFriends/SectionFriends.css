@@ -64,11 +64,16 @@
   row-gap: 30px;
   background: #fafafa;
   padding-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc; /* Светло-серая рамка */
+  border-radius: 8px; /* Закругленные углы */
 }
 
 .friend-img{
   width: 270px;
   height: 270px;
+  border-radius: 8px 8px 0 0; /* Закругленные углы */
+
 }
 
 .friend-item.active {

@@ -4,29 +4,30 @@ import { useNavigate } from "react-router-dom";
 import PetPopup from "./SectionFriends/PetPopup";
 import PetCard from "./SectionFriends/PetCard";
 
-
-export default function SectionProfile() {
+export default function FavPets() {
   const [selectedPet, setSelectedPet] = useState(null);
-  const { user } = useContext(AuthContext);
+  const {user,userPets} = useContext(AuthContext); // Используем контекст
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) {
-      navigate("/"); // Редирект на главную страницу
+      navigate("/"); // Редирект на главную страницу, если пользователя нет
     }
-  }, [user,navigate]);
+  }, [user, navigate]);
 
+  // Открытие попапа с информацией о питомце
   function openPopup(pet) {
     document.body.classList.toggle("stop-scroll");
     setSelectedPet(pet);
   }
 
+  // Закрытие попапа
   function closePopup() {
     document.body.classList.toggle("stop-scroll");
     setSelectedPet(null);
   }
 
-  if (!user || !user.userPets) {
+  if (!user || !userPets) {
     return <div>Loading...</div>; // Показываем загрузку, если пользователь или питомцы отсутствуют
   }
 
@@ -34,18 +35,21 @@ export default function SectionProfile() {
     <>
       <h2>Your wishlist:</h2>
       <div className="user-pets">
-        {user.userPets.length!==0 ? user.userPets.map((pet, idx) => (
-          <PetCard
-            onClick={() => {
-              openPopup(pet);
-            }}
-            pet={pet}
-            key={idx}
-            imgUrl={pet.img}
-            imgAlt={pet.name}
-            petName={pet.name}
-          ></PetCard>
-        )): <p>You haven't add any pet yet...</p>}
+        {userPets.length !== 0 ? (
+          userPets.map((pet, idx) => (
+            <PetCard
+              onClick={() => openPopup(pet)} // Открытие попапа при клике
+              pet={pet}
+              key={idx}
+              imgUrl={pet.img}
+              imgAlt={pet.name}
+              petName={pet.name}
+            />
+          ))
+        ) : (
+          <p>You haven't added any pets yet...</p> // Если нет питомцев в избранном
+        )}
+
         {selectedPet && (
           <div className="popup-container" onClick={closePopup}>
             <PetPopup pet={selectedPet} closePopup={closePopup} />
