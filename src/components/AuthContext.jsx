@@ -116,6 +116,8 @@ export const AuthProvider = ({ children }) => {
       }
 
       setUser(data); // сохраняем данные пользователя и токен
+      setAdoptedPets(data.adoptedPets)
+      setUserPets(data.favoritePets)
       localStorage.setItem("token", data.token); // сохраняем токен в localStorage
       navigate("/"); // перенаправление на главную страницу
     } catch (error) {
@@ -141,7 +143,8 @@ export const AuthProvider = ({ children }) => {
       if (!response.ok) {
         throw new Error(data.message || "Ошибка входа");
       }
-
+      setAdoptedPets(data.adoptedPets)
+      setUserPets(data.favoritePets)
       setUser(data); // сохраняем данные пользователя и токен
       localStorage.setItem("token", data.token); // сохраняем токен в localStorage
       navigate("/"); // перенаправление на главную страницу

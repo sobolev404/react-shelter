@@ -15,16 +15,6 @@ export default function AdoptedPets() {
     }
   }, [user, navigate]);
 
-  // Открытие модального окна
-  function openPopup(pet) {
-    setSelectedPet(pet);
-  }
-
-  // Закрытие модального окна
-  function closePopup() {
-    setSelectedPet(null);
-  }
-
   if (!user || !adoptedPets) {
     return (
       <div className={styles.loadingContainer}>
@@ -43,7 +33,6 @@ export default function AdoptedPets() {
             <div
               key={index}
               className={styles.card}
-              onClick={() => openPopup(item)}
             >
               <img
                 className={styles.image}
@@ -58,7 +47,6 @@ export default function AdoptedPets() {
         <p className={styles.noPets}>You haven't adopted any pets yet...</p>
       )}
 
-      {selectedPet && <PetPopup pet={selectedPet} closePopup={closePopup} />}
     </div>
   );
 }
