@@ -1,23 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import PetCard from "../SectionFriends/PetCard.jsx";
 import "./SectionSearch.css";
 import PetPopup from "../SectionFriends/PetPopup.jsx";
 import useFetching from "../../hooks/useFetching.js";
-
+import { AuthContext } from "../AuthContext";
 const sortOptions = ["name", "type", "breed", "age"];
 
 export default function SectionSearch() {
-  const [petsApi, setPetsApi] = useState([]);
-
-  const [fetchPets, isPetsLoading, petsError] = useFetching(async () => {
-    const response = await fetch(`http://localhost:4444/pets`);
-    const data = await response.json();
-    console.log(data);
-    setPetsApi(data);
-  });
+  const { petsApi,fetchPets } = useContext(AuthContext);
 
   useEffect(() => {
     fetchPets();
+    console.log(petsApi)
   }, []);
 
   useEffect(() => {
@@ -152,7 +146,7 @@ export default function SectionSearch() {
         </div>
       </div>
       <div className="section-search-pets">
-        {!isPetsLoading ? cardArray : <p>Загрузка</p>}
+      {cardArray}
       </div>
       {selectedPet && (
         <div className="popup-container" onClick={closePopup}>

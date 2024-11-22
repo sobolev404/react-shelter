@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-
+import { AuthContext } from "../AuthContext";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -17,18 +17,13 @@ export default function SectionFriends({
   usePagination,
   customClass,
 }) {
-  const [fetchPets, isPetsLoading, petsError] = useFetching(async () => {
-    const response = await fetch(`http://localhost:4444/pets`);
-    const data = await response.json();
-    console.log(data);
-    setPetsApi(data);
-  });
-
+ 
   useEffect(() => {
     fetchPets();
   }, []);
 
-  const [petsApi, setPetsApi] = useState([]);
+  const { petsApi,fetchPets } = useContext(AuthContext);
+
   const [finalCards, setFinalCards] = useState([]);
   const [selectedPet, setSelectedPet] = useState(null);
 

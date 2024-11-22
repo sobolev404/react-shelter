@@ -5,8 +5,8 @@ import { useLocation } from "react-router-dom";
 export default function PetPopup({ pet, closePopup }) {
   const location = useLocation();
 
-  const { user, addPetToUser, removePetFromUser } = useContext(AuthContext);
-
+  const { user, addPetToUser, removePetFromUser, addAdoptedPet } =
+    useContext(AuthContext);
 
   function convertMonthsToAge(months) {
     const years = Math.floor(months / 12);
@@ -27,6 +27,22 @@ export default function PetPopup({ pet, closePopup }) {
 
     return result || "0 months"; // если месяцев 0
   }
+
+  const handleAddToFavorites = () => {
+    addPetToUser(pet);
+    closePopup();
+  };
+
+  const handleRemoveFromFavorites = () => {
+    removePetFromUser(pet);
+    closePopup();
+  };
+
+  const handleAddAdoptedPet = () => {
+    addAdoptedPet(pet);
+    closePopup();
+  };
+
   return (
     <div onClick={(e) => e.stopPropagation()} className="popup-content">
       <div className="popup-top">
@@ -55,29 +71,36 @@ export default function PetPopup({ pet, closePopup }) {
       <button className="popup-btn" onClick={closePopup}>
         &#x2715;
       </button>
-      {(user && (location.pathname !== "/profile")) && (
+      {user && location.pathname !== "/profile" && (
         <button
           className="popup-btn-add"
           onClick={() => {
-            addPetToUser(pet);
-            closePopup();
+            handleAddToFavorites();
             alert(`${pet.name} was added to your wishlist`);
           }}
         >
           Add to a wishlist
         </button>
       )}
-      {(user && (location.pathname === "/profile")) && (
+      {user && location.pathname === "/profile" && (
         <button
           className="popup-btn-add popup-btn-delete"
           onClick={() => {
-            removePetFromUser(pet);
-            closePopup();
+            handleRemoveFromFavorites();
             alert(`${pet.name} was removed from your wishlist`);
           }}
         >
           Remove from a wishlist
         </button>
+      )}
+      {user && location.pathname === "/profile" && (
+        <button
+          className="popup-btn-add"
+          onClick={() => {
+            handleAddAdoptedPet();
+            alert(`${pet.name} was adopted`);
+          }}
+        >Take to home</button>
       )}
     </div>
   );

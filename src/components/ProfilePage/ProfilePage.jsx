@@ -1,4 +1,5 @@
 import AddNewPet from "../AddNewPet/AddNewPet";
+import AdoptedPets from "../AdoptedPets/AdoptedPets";
 import EditUser from "../EditUser/EditUser";
 import SectionFooter from "../SectionFooter/SectionFooter";
 import FavPets from "../SectionProfile";
@@ -43,6 +44,7 @@ export default function ProfilePage() {
         <EditUser></EditUser>
         <AddNewPet></AddNewPet>
         <FavPets></FavPets>
+        <AdoptedPets></AdoptedPets>
       </div>
 
       <SectionFooter></SectionFooter>
