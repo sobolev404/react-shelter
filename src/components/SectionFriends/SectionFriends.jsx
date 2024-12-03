@@ -29,12 +29,12 @@ export default function SectionFriends({
 
   const openPopup = (pet) => {
     document.body.classList.toggle("stop-scroll");
-    setSelectedPet(pet); // Открываем попап с выбранным питомцем
+    setSelectedPet(pet);
   };
 
   const closePopup = () => {
     document.body.classList.toggle("stop-scroll");
-    setSelectedPet(null); // Закрываем попап
+    setSelectedPet(null); 
   };
 
   const splitArray = (arr, parts) => {

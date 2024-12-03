@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  max-width: 1280px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 15px;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.petDesc {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+}
+
+.btnCont {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.image {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  width: 90%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.modalTitle {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancelBtn {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .cardList {
+    flex-direction: column;
+  }
+  .card{
+    width: 100%;
+  }
+}

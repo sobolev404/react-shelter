@@ -1,6 +1,10 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useContext, useState } from "react";
 import styles from "./AddNewPet.module.css";
+import { AuthContext } from "../AuthContext";
+
+
 export default function AddNewPet() {
+  const {fetchPets} = useContext(AuthContext)
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -63,6 +67,7 @@ export default function AddNewPet() {
           petDiseases: '',
           petParasites: '',
         });
+        fetchPets()
       } else {
         console.error("Ошибка при добавлении питомца");
       }

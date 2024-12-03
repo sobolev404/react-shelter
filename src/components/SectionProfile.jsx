@@ -6,29 +6,27 @@ import PetCard from "./SectionFriends/PetCard";
 
 export default function FavPets() {
   const [selectedPet, setSelectedPet] = useState(null);
-  const {user,userPets} = useContext(AuthContext); // Используем контекст
+  const {user,userPets} = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) {
-      navigate("/"); // Редирект на главную страницу, если пользователя нет
+      navigate("/");
     }
   }, [user, navigate]);
 
-  // Открытие попапа с информацией о питомце
   function openPopup(pet) {
     document.body.classList.toggle("stop-scroll");
     setSelectedPet(pet);
   }
 
-  // Закрытие попапа
   function closePopup() {
     document.body.classList.toggle("stop-scroll");
     setSelectedPet(null);
   }
 
   if (!user || !userPets) {
-    return <div>Loading...</div>; // Показываем загрузку, если пользователь или питомцы отсутствуют
+    return <div>Loading...</div>; 
   }
 
   return (
@@ -38,7 +36,7 @@ export default function FavPets() {
         {userPets.length !== 0 ? (
           userPets.map((pet, idx) => (
             <PetCard
-              onClick={() => openPopup(pet)} // Открытие попапа при клике
+              onClick={() => openPopup(pet)} 
               pet={pet}
               key={idx}
               imgUrl={pet.img}
@@ -47,7 +45,7 @@ export default function FavPets() {
             />
           ))
         ) : (
-          <p>You haven't added any pets yet...</p> // Если нет питомцев в избранном
+          <p>You haven't added any pets yet...</p>
         )}
 
         {selectedPet && (

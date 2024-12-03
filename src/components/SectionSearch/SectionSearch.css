@@ -1,42 +1,95 @@
-.section-search{
-    margin: 0 auto;
-    max-width: 1280px;
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
-    row-gap: 20px;
-    align-items: center;
+.section-search {
+  margin: 0 auto;
+  max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  row-gap: 20px;
+  align-items: center;
 }
 
-.section-search-pets{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 20px;
-    column-gap: 20px;
-    }
-
-.section-search-pets .friend-item{
-    width: 270px;
-    flex-basis: 0;
+.search-wrap {
+  background-color: #f6f6f6;
 }
 
-.search-params{
-    display: flex;
-    justify-content: space-between;
-    column-gap: 50px;
+.section-search-pets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 20px;
+  column-gap: 20px;
 }
 
-.search-params div input,select{
-    width: 100%;
+.section-search-pets .friend-item {
+  width: 270px;
+  flex-basis: 0;
 }
 
+.search-params {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 50px;
+}
+
+.search-params div {
+  width: 100%;
+}
+
+.search-params div h2 {
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: bold;
+}
+
+.search-params div input,
+.search-params div select {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-params div input:hover,
+.search-params div select:hover {
+  border-color: #007bff;
+  background-color: #ffffff;
+}
+
+.search-params div input:focus,
+.search-params div select:focus {
+  border-color: #007bff;
+  box-shadow: 0px 0px 4px #007bff;
+}
+
+.search-params div select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23666666' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+/* Медиазапросы для адаптивности */
 @media screen and (max-width: 767px) {
-    .search-params{
-        flex-direction: column;
-    }
+  .search-params {
+    flex-direction: column;
+  }
 
-    .search-params div h2{
-        font-size: 17px;
-    }
+  .search-params div {
+    width: 100%;
+  }
+
+  .search-params div h2 {
+    font-size: 17px;
+  }
+
+  .search-params div input,
+  .search-params div select {
+    font-size: 14px;
+  }
 }

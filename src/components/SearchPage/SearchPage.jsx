@@ -30,7 +30,7 @@ export default function SearchPage() {
     },
     {
       className: "interactive",
-      text: user ? "Profile" : "Login",
+      text: user ? (!user.isAdmin ? "Profile" : "Admin") : "Login",
       link: user ? "/profile" : "/login",
     },
   ];

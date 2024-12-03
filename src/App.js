@@ -6,7 +6,7 @@ import SectionHelp from "./components/SectionHelp/SectionHelp";
 import SectionDonation from "./components/SectionDonation/SectionDonation";
 import SectionFooter from "./components/SectionFooter/SectionFooter";
 import SectionFriends from "./components/SectionFriends/SectionFriends";
-import SecondPage from "./components/SecondPage/SecondPage"; // Импортируем вторую страницу
+import SecondPage from "./components/SecondPage/SecondPage"; 
 import SearchPage from "./components/SearchPage/SearchPage";
 import { AuthProvider } from "./components/AuthContext";
 import LoginPage from "./components/AuthPages/LoginPage";

@@ -29,7 +29,7 @@ header a {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  margin-bottom: 90px;
+  margin-bottom: 30px;
 }
 
 .nav {
@@ -64,7 +64,7 @@ header a {
 
 @media screen and (max-width: 1279px) {
   .header {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
   }
 }
 

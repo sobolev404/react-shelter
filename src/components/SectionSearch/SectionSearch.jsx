@@ -7,11 +7,11 @@ import { AuthContext } from "../AuthContext";
 const sortOptions = ["name", "type", "breed", "age"];
 
 export default function SectionSearch() {
-  const { petsApi,fetchPets } = useContext(AuthContext);
+  const { petsApi, fetchPets } = useContext(AuthContext);
 
   useEffect(() => {
     fetchPets();
-    console.log(petsApi)
+    console.log(petsApi);
   }, []);
 
   useEffect(() => {
@@ -109,50 +109,50 @@ export default function SectionSearch() {
   function handleSortOption(event) {
     const selectedOption = event.target.value;
     setSortOption(selectedOption);
-    sortArr(selectedOption, petsApi); // Используем новое значение напрямую
+    sortArr(selectedOption, petsApi);
   }
 
   return (
-    <div className="section-search">
-      <div className="search-params">
-        <div className="search-by-name">
-          <h2>Search pet by name</h2>
-          <input
-            ref={inputNameRef}
-            type="text"
-            onChange={(e) => setInputName(e.target.value)}
-            value={inputName}
-          />
+    <div className="search-wrap">
+      <div className="section-search">
+        <div className="search-params">
+          <div className="search-by-name">
+            <h2>Search pet by name</h2>
+            <input
+              ref={inputNameRef}
+              type="text"
+              onChange={(e) => setInputName(e.target.value)}
+              value={inputName}
+            />
+          </div>
+          <div className="search-by-name">
+            <h2>Search pet by breed</h2>
+            <input
+              ref={inputBreedRef}
+              type="text"
+              onChange={(e) => setInputBreed(e.target.value)}
+              value={inputBreed}
+            />
+          </div>
+          <div className="search-sort">
+            <h2>Sort by:</h2>
+            <select onChange={handleSortOption}>
+              <option>Sort by</option>
+              {sortOptions.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <div className="search-by-name">
-          <h2>Search pet by breed</h2>
-          <input
-            ref={inputBreedRef}
-            type="text"
-            onChange={(e) => setInputBreed(e.target.value)}
-            value={inputBreed}
-          />
-        </div>
-        <div className="search-sort">
-          <h2>Sort by:</h2>
-          <select onChange={handleSortOption}>
-            <option>Sort by</option>
-            {sortOptions.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
+        <div className="section-search-pets">{cardArray}</div>
+        {selectedPet && (
+          <div className="popup-container" onClick={closePopup}>
+            <PetPopup pet={selectedPet} closePopup={closePopup} />
+          </div>
+        )}
       </div>
-      <div className="section-search-pets">
-      {cardArray}
-      </div>
-      {selectedPet && (
-        <div className="popup-container" onClick={closePopup}>
-          <PetPopup pet={selectedPet} closePopup={closePopup} />
-        </div>
-      )}
     </div>
   );
 }

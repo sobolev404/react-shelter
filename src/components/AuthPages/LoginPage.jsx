@@ -10,7 +10,7 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(email, password); // вызываем функцию логина из контекста
+    login(email, password);
   };
 
   return (

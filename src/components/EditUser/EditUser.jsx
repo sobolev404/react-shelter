@@ -42,12 +42,12 @@ export default function EditUser() {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Ensure token is included for auth
+          Authorization: `Bearer ${token}`, 
         },
         body: JSON.stringify({
           fullName: formData.fullName,
           avatarUrl: formData.avatarUrl,
-          password: formData.password || undefined, // Only include if provided
+          password: formData.password || undefined, 
         }),
       });
 
@@ -56,7 +56,6 @@ export default function EditUser() {
       }
 
       const updatedUser = await response.json();
-      // Update user in context or local state as needed
       fetchUserData();
       setIsEditing(false);
       setFormData((prevData) => ({
@@ -69,12 +68,12 @@ export default function EditUser() {
   }
 
   if (loading) {
-    return <div>Loading...</div>; // Состояние загрузки
+    return <div>Loading...</div>;
   }
 
   return (
     <div className={styles.formContainer}>
-      <h2 className={styles.title}>User Profile</h2>
+      <h2 className={styles.title}>{!user.isAdmin ? 'User Profile' : 'Admin Profile'}</h2>
       {user ? (
         <>
           {!isEditing ? (

@@ -5,13 +5,12 @@ import PetPopup from "../SectionFriends/PetPopup";
 import styles from "./AdoptedPets.module.css";
 
 export default function AdoptedPets() {
-  const [selectedPet, setSelectedPet] = useState(null);
-  const { user, adoptedPets, fetchAdoptedPets } = useContext(AuthContext); // Используем контекст
+  const { user, adoptedPets, fetchAdoptedPets } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) {
-      navigate("/"); // Перенаправляем на главную страницу, если пользователь не авторизован
+      navigate("/");
     }
   }, [user, navigate]);
 

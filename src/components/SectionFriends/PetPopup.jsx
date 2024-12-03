@@ -21,11 +21,11 @@ export default function PetPopup({ pet, closePopup }) {
     }
 
     if (remainingMonths > 0) {
-      if (years > 0) result += " "; // добавить пробел, если есть и годы
+      if (years > 0) result += " "; 
       result += `${remainingMonths} ${monthsLabel}`;
     }
 
-    return result || "0 months"; // если месяцев 0
+    return result || "0 months"; 
   }
 
   const handleAddToFavorites = () => {

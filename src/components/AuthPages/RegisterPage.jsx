@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../AuthContext";
-import { useNavigate, Link } from "react-router-dom"; // Импортируем useNavigate
+import { useNavigate, Link } from "react-router-dom"; 
 import styles from "./AuthPages.module.css";
 
 const RegisterPage = () => {
@@ -17,7 +17,7 @@ const RegisterPage = () => {
     try {
       await register(email, password, fullName, avatarUrl);
     } catch (error) {
-      console.error("Ошибка регистрации:", error); // можно добавить обработку ошибки
+      console.error("Ошибка регистрации:", error); 
     }
   };
 

@@ -12,13 +12,13 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [loading, setLoading] = useState(true); // Добавляем состояние загрузки
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (token) {
       fetchUserData();
     } else {
-      setLoading(false); // Устанавливаем загрузку в false, если токен отсутствует
+      setLoading(false); 
     }
   }, [token]);
 
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ userId: user._id }), // Передаем userId в body
+        body: JSON.stringify({ userId: user._id }), 
       });
 
       if (response.ok) {
@@ -86,7 +86,7 @@ export const AuthProvider = ({ children }) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ userId: user._id }), // Передаем userId в body
+        body: JSON.stringify({ userId: user._id }), 
       });
 
       if (response.ok) {
@@ -115,11 +115,11 @@ export const AuthProvider = ({ children }) => {
         throw new Error(data.message || "Ошибка входа");
       }
 
-      setUser(data); // сохраняем данные пользователя и токен
+      setUser(data);
       setAdoptedPets(data.adoptedPets)
       setUserPets(data.favoritePets)
-      localStorage.setItem("token", data.token); // сохраняем токен в localStorage
-      navigate("/"); // перенаправление на главную страницу
+      localStorage.setItem("token", data.token);
+      navigate("/");
     } catch (error) {
       alert(error.message);
     }
@@ -135,19 +135,21 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify({ email, password, fullName, avatarUrl }),
       });
 
-      if (!response.ok) {
-        throw new Error("Ошибка регистрации");
-      }
-
       const data = await response.json();
+  
       if (!response.ok) {
-        throw new Error(data.message || "Ошибка входа");
+        if (data.errors) {
+          alert(data.errors.join("\n"));
+        } else {
+          throw new Error(data.message || "Registration failed");
+        }
+        return;
       }
       setAdoptedPets(data.adoptedPets)
       setUserPets(data.favoritePets)
-      setUser(data); // сохраняем данные пользователя и токен
-      localStorage.setItem("token", data.token); // сохраняем токен в localStorage
-      navigate("/"); // перенаправление на главную страницу
+      setUser(data);
+      localStorage.setItem("token", data.token);
+      navigate("/");
     } catch (error) {
       console.error("Ошибка при регистрации:", error);
       throw error;
@@ -162,13 +164,13 @@ export const AuthProvider = ({ children }) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ userId: user._id, petId: pet._id }), // Отправляем только petId
+        body: JSON.stringify({ userId: user._id, petId: pet._id }),
       });
 
       if (response.ok) {
         const data = await response.json();
         alert(`${pet.name} was added to your wishlist`);
-        setUserPets(data.user.favoritePets); // Обновляем состояние избранного
+        setUserPets(data.user.favoritePets);
         fetchPets();
       } else {
         const error = await response.json();
@@ -197,7 +199,7 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         alert(`${pet.name} was removed from your wishlist`);
-        setUserPets(data.user.favoritePets); // Обновляем состояние избранных
+        setUserPets(data.user.favoritePets);
         fetchPets();
       } else {
         alert("Failed to remove pet from wishlist.");
@@ -217,8 +219,8 @@ export const AuthProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          userId: user._id, // ID пользователя
-          petId: pet._id, // ID питомца
+          userId: user._id,
+          petId: pet._id,
         }),
       });
 
@@ -226,7 +228,7 @@ export const AuthProvider = ({ children }) => {
         const data = await response.json();
         alert(`${pet.name} has been successfully adopted`);
         setAdoptedPets(data.user.adoptedPets);
-        fetchPets(); // Опционально обновляем список всех питомцев
+        fetchPets();
         setUserPets(data.user.favoritePets)
       } else {
         const error = await response.json();
